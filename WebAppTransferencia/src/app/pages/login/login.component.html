@@ -1,0 +1,29 @@
+<main>
+  <div class="card">
+      <h5 class="card-title">Login</h5>
+
+    <form>
+      <div class="input__container">
+        <mat-form-field class="input">
+            <mat-icon fontIcon="account_circle" class="icone" matPrefix></mat-icon>
+            <mat-label>Usuario</mat-label>
+            <input matInput type="text">
+        </mat-form-field>
+      </div>
+
+      <div class="input__container">
+        <mat-form-field class="input">
+            <mat-icon fontIcon="key" class="icone" matPrefix></mat-icon>
+            <mat-label>Senha</mat-label>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <input matInput [type]="hide ? 'password' : 'text'">
+        </mat-form-field>
+      </div>
+
+
+    </form>
+    <button class="botao" mat-raised-button  color="primary">Entrar</button>
+
+
+  </div>
+</main>
