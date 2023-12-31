@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.AugustoSouza.SistemaDeTransferencia.DTO.AuthenticationdDTO;
 import com.AugustoSouza.SistemaDeTransferencia.DTO.LoginResponseDTO;
 import com.AugustoSouza.SistemaDeTransferencia.Entity.User;
+import com.AugustoSouza.SistemaDeTransferencia.Exceptions.UserAlreadyExistsException;
 import com.AugustoSouza.SistemaDeTransferencia.Repository.UserRepository;
 import com.AugustoSouza.SistemaDeTransferencia.Service.TokenService;
 import com.AugustoSouza.SistemaDeTransferencia.Service.UserService;
@@ -52,7 +53,7 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Validated AuthenticationdDTO authenticationDTO) {
         if(userRepository.findByUsername(authenticationDTO.getUsername()) != null){
-            return ResponseEntity.badRequest().build();
+           throw new UserAlreadyExistsException("User already exists");
         }
 
         String password = new BCryptPasswordEncoder().encode(authenticationDTO.getPassword());
