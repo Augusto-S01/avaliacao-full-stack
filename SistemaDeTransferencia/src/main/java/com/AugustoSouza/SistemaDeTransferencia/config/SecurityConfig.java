@@ -36,18 +36,15 @@ public class SecurityConfig {
         })
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-        .authorizeHttpRequests((request) -> request
-        .requestMatchers(HttpMethod.POST, "auth/**").permitAll()
-        .anyRequest().authenticated()
+        .authorizeHttpRequests((request) -> 
+            request
+            .requestMatchers(HttpMethod.POST, "auth/**").permitAll()
+            .requestMatchers(HttpMethod.GET, "h2-console/**").permitAll()
+            .anyRequest().authenticated()
         
         ).addFilterBefore(securityFilter,UsernamePasswordAuthenticationFilter.class);
         
-        
 
-            // http.headers(headers -> {
-            //     headers.frameOptions(frameOptions -> frameOptions.disable());
-            // });
-            
         
             return http.build();
 

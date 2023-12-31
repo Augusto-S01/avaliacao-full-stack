@@ -33,16 +33,18 @@ public class SecurityFilter  extends OncePerRequestFilter{
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
                 
-                String token = this.recoverToken(request);
+
+                try{
+
+                    String token = this.recoverToken(request);
                     if(token != null) {
                     String validateToken = tokenService.validateToken(token);
                     UserDetails user = userRepository.findByUsername(validateToken);
-                    
+                    if(user == null) throw new TokenNotFoundException("Token not found");
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user,null,null);   
                     SecurityContextHolder.getContext().setAuthentication(authentication);
-
-                }else{
-                    throw new TokenNotFoundException("Missing token indentification");
+                }
+                }catch(TokenNotFoundException e){
                 }
                 filterChain.doFilter(request, response);
     }
@@ -50,7 +52,7 @@ public class SecurityFilter  extends OncePerRequestFilter{
     private String recoverToken(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
         if(authHeader == null) {
-            throw new RuntimeException("Token not found");
+            throw new TokenNotFoundException("Required token");
         }
         return authHeader.replace("Bearer ", "");
     }   
