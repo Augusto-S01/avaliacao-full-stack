@@ -33,10 +33,12 @@ public class WebSecurityConfig {
             .requestMatchers(HttpMethod.GET, "/ping").permitAll()
             .requestMatchers(HttpMethod.POST, "/user/create").permitAll()
             .requestMatchers(HttpMethod.POST, "/role/create").permitAll()
+            .anyRequest().permitAll());
+
+            http.headers(headers -> {
+                headers.frameOptions(frameOptions -> frameOptions.disable());
+            });
             
-            .anyRequest().authenticated())
-            .addFilterBefore(customBasicAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-    
         
             return http.build();
 

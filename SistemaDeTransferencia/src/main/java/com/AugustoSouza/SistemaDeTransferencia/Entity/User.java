@@ -1,5 +1,6 @@
 package com.AugustoSouza.SistemaDeTransferencia.Entity;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -22,6 +23,8 @@ public class User {
     private String username;
 
     private String password;
+
+    private BigDecimal balance;
 
     @ManyToMany
     private List<Role> roles;

@@ -66,6 +66,8 @@ public class CustomBasicAuthenticationFilter extends OncePerRequestFilter{
             filterChain.doFilter(request, response);
 
 
+        }else {
+            filterChain.doFilter(request, response);
         }
     }
 
