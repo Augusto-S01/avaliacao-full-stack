@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.AugustoSouza.SistemaDeTransferencia.DTO.AuthenticationdDTO;
+import com.AugustoSouza.SistemaDeTransferencia.DTO.LoginResponseDTO;
 import com.AugustoSouza.SistemaDeTransferencia.Entity.User;
 import com.AugustoSouza.SistemaDeTransferencia.Repository.UserRepository;
 import com.AugustoSouza.SistemaDeTransferencia.Service.TokenService;
+import com.AugustoSouza.SistemaDeTransferencia.Service.UserService;
 
 import ch.qos.logback.core.subst.Token;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +25,9 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/auth")
-@RequiredArgsConstructor
 public class AuthenticationController {
     
-    private final AuthenticationManager authenticationManager;
+
 
     @Autowired
     private UserRepository userRepository;
@@ -34,15 +35,18 @@ public class AuthenticationController {
     @Autowired 
     private TokenService tokenService;
 
+    @Autowired
+    private UserService userService;
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Validated AuthenticationdDTO authDTO) {
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(authDTO.getUsername(), authDTO.getPassword());
-        Authentication authenticate = authenticationManager.authenticate(authentication);
 
-        String token = tokenService.generateToken((User) authenticate.getPrincipal());
+        User user = userService.usernameByAutehntication(authDTO);
+        String token = tokenService.generateToken(user);
+        
+        LoginResponseDTO loginDTO = new LoginResponseDTO(user.getUsername(), token);
 
-
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(loginDTO);
     }
 
     @PostMapping("/register")
