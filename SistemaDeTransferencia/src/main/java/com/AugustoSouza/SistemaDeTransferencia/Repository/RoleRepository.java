@@ -1,4 +1,4 @@
-package com.AugustoSouza.SistemaDeTransferencia.config.SistemaDeTransferencia.Repository;
+package com.AugustoSouza.SistemaDeTransferencia.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

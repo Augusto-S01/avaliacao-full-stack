@@ -1,11 +1,11 @@
-package com.AugustoSouza.SistemaDeTransferencia.config.SistemaDeTransferencia.Service;
+package com.AugustoSouza.SistemaDeTransferencia.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.AugustoSouza.SistemaDeTransferencia.Entity.User;
-import com.AugustoSouza.SistemaDeTransferencia.config.SistemaDeTransferencia.Repository.UserRepository;
+import com.AugustoSouza.SistemaDeTransferencia.Repository.UserRepository;
 
 
 @Service
@@ -22,7 +22,8 @@ public class UserService {
 
     public User create(User user){
 
-        User existUser = userRepository.findByUsername(user.getUsername());
+        // User existUser = userRepository.findByUsername(user.getUsername());
+        User existUser = null;
 
         if(existUser != null){
             throw new Error("User aleady exists");

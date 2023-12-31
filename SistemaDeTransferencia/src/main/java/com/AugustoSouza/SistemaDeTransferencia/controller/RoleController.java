@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.AugustoSouza.SistemaDeTransferencia.Entity.Role;
-import com.AugustoSouza.SistemaDeTransferencia.config.SistemaDeTransferencia.Service.RoleService;
+import com.AugustoSouza.SistemaDeTransferencia.Service.RoleService;
 
 import lombok.NoArgsConstructor;
 

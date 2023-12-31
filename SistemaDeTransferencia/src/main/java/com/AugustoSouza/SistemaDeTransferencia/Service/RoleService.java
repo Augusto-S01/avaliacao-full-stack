@@ -1,10 +1,10 @@
-package com.AugustoSouza.SistemaDeTransferencia.config.SistemaDeTransferencia.Service;
+package com.AugustoSouza.SistemaDeTransferencia.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.AugustoSouza.SistemaDeTransferencia.Entity.Role;
-import com.AugustoSouza.SistemaDeTransferencia.config.SistemaDeTransferencia.Repository.RoleRepository;
+import com.AugustoSouza.SistemaDeTransferencia.Repository.RoleRepository;
 
 @Service
 public class RoleService {
