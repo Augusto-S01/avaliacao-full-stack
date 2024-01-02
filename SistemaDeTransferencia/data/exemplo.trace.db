@@ -645,3 +645,9 @@ Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:522)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
 	... 103 more
+2024-01-02 16:30:27.993874-03:00 jdbc[54]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2024-01-02 16:49:53.030954-03:00 jdbc[64]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]
+2024-01-02 16:50:10.088331-03:00 jdbc[64]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: The object is already closed [90007-224]

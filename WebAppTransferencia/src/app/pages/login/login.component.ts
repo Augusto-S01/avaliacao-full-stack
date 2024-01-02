@@ -12,7 +12,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { catchError } from 'rxjs';
+import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -78,8 +78,12 @@ export class LoginComponent implements OnInit{
     }
 
   }
-}
-function of(arg0: null): any {
-  throw new Error('Function not implemented.');
+
+  register(){
+    console.log("teste")
+    this.router.navigate(['/register']);
+  }
+
+
 }
 

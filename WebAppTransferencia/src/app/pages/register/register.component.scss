@@ -1,0 +1,107 @@
+main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.card{
+  width: 30em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5em;
+  background-color: #c7c7c7;
+  border-radius: 25px;
+  border: 0;
+}
+
+h5{
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+  border: 0;
+
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #00b079;
+  height: 2em;
+  width: 100%;
+  text-align: center;
+  padding-top: 0.5em;
+  padding-bottom: 1.5em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+form{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+
+  margin-top: 2em;
+
+}
+
+.input__container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: 80%;
+  height: 5em;
+  & > .input{
+    width: 100%;
+  }
+  & > .icone{
+    background-color: #bd4444;
+  }
+
+
+}
+
+.botao{
+  width: 100%;
+  height: 3em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+.erros{
+  margin-bottom: 2em;
+}
+
+.register{
+  font-size: 1em;
+  font-weight: bold;
+  color: #3f51b5;
+  background-color: inherit;
+  text-decoration: underline;
+  height: 2em;
+  width: 100%;
+  padding-top: 0.5em;
+  padding-bottom: 1.5em;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 2em;
+
+  &:hover{
+    color: #3f51b5;
+    text-decoration: underline;
+    height: 2em;
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 2em;
+    cursor: pointer;
+  }
+}

@@ -1,8 +1,8 @@
 <main>
   <div class="card">
-      <h5 class="card-title">Login</h5>
+      <h5 class="card-title">Registro</h5>
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="registerForm" >
       <div class="input__container">
         <mat-form-field class="input">
             <mat-icon fontIcon="account_circle" class="icone" matPrefix></mat-icon>
@@ -19,10 +19,22 @@
             <input formControlName="senha"  matInput placeholder="Ex:  João123" [type]="hide ? 'password' : 'text'">
         </mat-form-field>
       </div>
+      <div class="input__container">
+        <mat-form-field class="input">
+            <mat-icon fontIcon="key" class="icone" matPrefix></mat-icon>
+            <mat-label>Repita a senha</mat-label>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <input formControlName="repitaSenha" name="teste"  matInput placeholder="Ex:  João123" [type]="hide ? 'password' : 'text'">
+          </mat-form-field>
+      </div>
 
-      <h5 class="register" (click)="register()">Não é registrado?</h5>
+      <h5 class="register" (click)="irParaLogin()">Ja é registrado? Faça Login</h5>
 
-      <button  class="botao" mat-raised-button  color="primary">Entrar</button>
+
+      <div class="erros" *ngIf="error">
+        <mat-error>{{error}}</mat-error>
+      </div>
+      <button  class="botao" mat-raised-button (click)="onSubmit()" color="primary" >Registrar</button>
 
     </form>
 

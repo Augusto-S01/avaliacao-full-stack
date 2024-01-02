@@ -36,6 +36,12 @@ export class AutenticacaoService {
     this.router.navigate(['/login']);
   }
 
+  register(usuario: any, senha: any){
+    console.log(usuario, senha);
+
+    return this.httpClient.post(TransferenciaAPI.register, {username : usuario, password : senha})
+  }
+
   getUsuarioLogado(){
     return this.CookiesService.getCookie('username');
   }
