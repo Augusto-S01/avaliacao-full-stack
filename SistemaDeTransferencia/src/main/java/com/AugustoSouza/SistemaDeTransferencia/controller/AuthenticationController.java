@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +22,14 @@ import com.AugustoSouza.SistemaDeTransferencia.Service.TokenService;
 import com.AugustoSouza.SistemaDeTransferencia.Service.UserService;
 
 import ch.qos.logback.core.subst.Token;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = "*")
 public class AuthenticationController {
     
 
@@ -40,18 +44,17 @@ public class AuthenticationController {
     private UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Validated AuthenticationdDTO authDTO) {
+    public ResponseEntity login( @Valid  @RequestBody  AuthenticationdDTO authDTO) {
 
         User user = userService.usernameByAutehntication(authDTO);
         String token = tokenService.generateToken(user);
-        
-        LoginResponseDTO loginDTO = new LoginResponseDTO(user.getUsername(), token);
 
+        LoginResponseDTO loginDTO = new LoginResponseDTO(user.getUsername(), token);
         return ResponseEntity.ok(loginDTO);
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody @Validated AuthenticationdDTO authenticationDTO) {
+    public ResponseEntity register( @Valid @RequestBody AuthenticationdDTO authenticationDTO) {
         if(userRepository.findByUsername(authenticationDTO.getUsername()) != null){
            throw new UserAlreadyExistsException("User already exists");
         }

@@ -23,10 +23,12 @@ public class UserService {
     private final AuthenticationManager authenticationManager;
 
     public User usernameByAutehntication(AuthenticationdDTO authDTO) {
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(authDTO.getUsername(), authDTO.getPassword());
-        Authentication authenticate = authenticationManager.authenticate(authentication);
-        return (User) authenticate.getPrincipal();
+     
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(authDTO.getUsername(), authDTO.getPassword());
+            Authentication authenticate = authenticationManager.authenticate(authentication);
+            return (User) authenticate.getPrincipal();
         
+        // return null;
     }
 
 }
