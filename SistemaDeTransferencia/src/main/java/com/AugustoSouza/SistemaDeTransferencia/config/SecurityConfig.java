@@ -45,7 +45,9 @@ public class SecurityConfig {
         ).addFilterBefore(securityFilter,UsernamePasswordAuthenticationFilter.class);
         
 
-        
+            http.headers( header -> {
+                header.frameOptions(frame -> frame.disable());
+            });
             return http.build();
 
     }

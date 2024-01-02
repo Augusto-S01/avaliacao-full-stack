@@ -25,12 +25,8 @@ public class RoleController {
 
     @PostMapping("/create")
     public Role create(@RequestBody Role role) {
-        
-        
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
-
-
         return roleService.create(role);
     }
 }

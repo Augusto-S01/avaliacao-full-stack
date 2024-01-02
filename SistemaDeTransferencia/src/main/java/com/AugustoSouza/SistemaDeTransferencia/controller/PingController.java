@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @RequestMapping("/ping")
 public class PingController {
 
-    
     @RequestMapping("/pong")
     public String ping(@RequestHeader("headerName") String headerValue){
         return "pong";
     }
-
+    
     @PostMapping("bang")
     public String bang() {
         return "bang";
