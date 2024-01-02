@@ -7,7 +7,7 @@
     <div class="card__conta">
       <h5 class="card-title">Conta</h5>
       <div class="card-body">
-        <p class="card-text">{{saldo}}</p>
+        <p class="card-text">R$ {{saldo | moedaReal }}</p>
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </div>
     </div>
@@ -21,6 +21,10 @@
       <li (click)="irParaHistorico()">
           <mat-icon fontIcon="history" class="icone" matPrefix></mat-icon>
           <span>Historico</span>
+      </li>
+      <li (click)="logout()">
+          <mat-icon fontIcon="logout" class="icone" matPrefix></mat-icon>
+          <span>Sair</span>
       </li>
 
     </div>

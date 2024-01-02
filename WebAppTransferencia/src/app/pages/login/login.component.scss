@@ -76,3 +76,29 @@ form{
   border-bottom-left-radius: 1em;
   border-bottom-right-radius: 1em;
 }
+
+.register{
+  font-size: 1em;
+  font-weight: bold;
+  color: #3f51b5;
+  background-color: inherit;
+  text-decoration: underline;
+  height: 2em;
+  width: 100%;
+  padding-top: 0.5em;
+  padding-bottom: 1.5em;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 2em;
+
+  &:hover{
+    color: #3f51b5;
+    text-decoration: underline;
+    height: 2em;
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 1.5em;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 2em;
+    cursor: pointer;
+  }
+}

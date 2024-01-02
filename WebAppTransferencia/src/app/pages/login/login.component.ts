@@ -1,3 +1,4 @@
+import { AutenticacaoService } from './../../services/autenticacao.service';
 
 
 
@@ -10,7 +11,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginService } from '../../services/login.service';
+
 import { catchError } from 'rxjs';
 
 @Component({
@@ -33,8 +34,8 @@ import { catchError } from 'rxjs';
 export class LoginComponent implements OnInit{
 
   constructor(
-    private Router : Router,
-    private loginService: LoginService
+    private router : Router,
+    private autenticacaoService : AutenticacaoService
     ) { }
 
 
@@ -59,7 +60,7 @@ export class LoginComponent implements OnInit{
     const senha = this.loginForm.value.senha;
 
     if(usuario && senha){
-      this.loginService.login(usuario, senha).pipe(
+      this.autenticacaoService.login(usuario, senha).pipe(
         catchError(error => {
           console.log('Erro ao fazer login: ', error);
           return of(null);
@@ -68,9 +69,8 @@ export class LoginComponent implements OnInit{
        .subscribe(
           (response: any) => {
             if(response){
-              this.loginService.salvarSessao(response);
-              this.Router.navigate(['/home']);
-
+              this.autenticacaoService.salvarSessao(response);
+              this.router.navigate(['/home']);
             }}
        );
 
