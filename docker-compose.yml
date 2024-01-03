@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+    api:
+        build: 
+            context: "."
+            dockerfile: "SistemaDeTransferencia/Dockerfile"
+        container_name: api-application
+        ports:
+        - "8080:8080"
+        networks:
+        - sistema-transferencia-network
+    web:
+        build: 
+            context: "."
+            dockerfile: "WebAppTransferencia/Dockerfile"
+        image : "webapptransferencia:latest"
+        container_name: web-application
+        ports:
+        - "80:80"
+        networks:
+         - sistema-transferencia-network
+networks:
+   sistema-transferencia-network:
+       driver: bridge

@@ -7,13 +7,15 @@
     align-items: center;
     margin-bottom: 0px;
     .titulo{
-        font-size: 2em;
-        font-weight: bold;
-        color: #fff;
-        font-family: 'Montserrat', sans-serif;
+      cursor: pointer;
+      font-size: 2em;
+      font-weight: bold;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
     }
 
     .logo{
+      cursor: pointer;
         margin-left: 2em;
         margin-right: 3em;
         width: 3em;
