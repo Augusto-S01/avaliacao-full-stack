@@ -13,6 +13,11 @@
 ## Descrição 
 
 Esse projeto foi desenvolvido para atender a avaliação técnica , que consiste em desenvolver um sistema de agendamento de transferências financeiras. as especificações podem ser encontradas no arquivo [AVALIACAO.md](AVALIACAO.md)
+![image](https://github.com/Augusto-S01/avaliacao-full-stack/assets/43907990/5a930f74-8f45-42b9-b04f-07e9f8db157e)
+
+##Temporariamente disponivel 
+
+Atualmente o projeto esta temporariamente no meu servidor para fins de teste, esta disponivel em http://augustosouza.tech
 
 
 ## Tecnologias utilizadas
