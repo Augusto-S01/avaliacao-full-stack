@@ -1,8 +1,13 @@
 <div class="content">
-    <div class="card__conta">
-      <h5 class="card-title">Para qual conta você deseja transferir? </h5>
-      <div class="card-body">
-        <!-- <p class="card-text">R$ {{saldo | moedaReal }}</p> --> -->
-        <!-- <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <div class="card_content">
+      <h5 class="card_title">Para qual conta você deseja transferir? </h5>
+      <div class="card_body">
+          <form [formGroup]="agendarForm" >
+            <mat-form-field class="input_field">
+              <mat-label>Conta</mat-label>
+              <input  formControlName="conta" class="input" matInput type="number" minlength="6" maxlength="6"  placeholder="Ex. 123456" value="" >
+            </mat-form-field>
+            <button class="botao" mat-raised-button color="primary" (click)="prosseguir()">Prosseguir</button>
+          </form>
       </div>
-    </div> -->
+    </div>
