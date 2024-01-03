@@ -1,13 +1,93 @@
-<div class="content">
-    <div class="card_content">
-      <h5 class="card_title">Para qual conta você deseja transferir? </h5>
-      <div class="card_body">
-          <form [formGroup]="agendarForm" >
-            <mat-form-field class="input_field">
-              <mat-label>Conta</mat-label>
-              <input  formControlName="conta" class="input" matInput type="number" minlength="6" maxlength="6"  placeholder="Ex. 123456" value="" >
-            </mat-form-field>
-            <button class="botao" mat-raised-button color="primary" (click)="prosseguir()">Prosseguir</button>
-          </form>
-      </div>
+<div class="content" *ngIf="escolherConta">
+  <div class="escolher_conta">
+    <h5 class="card_title">Para qual conta você deseja transferir? </h5>
+    <div class="card_body">
+      <form [formGroup]="agendarForm">
+        <mat-form-field class="input_field">
+          <mat-label>Conta</mat-label>
+          <input formControlName="conta" class="input" matInput type="number" minlength="6" maxlength="6"
+            placeholder="Ex. 123456" value="">
+          <mat-error class="error" *ngIf="agendarForm.get('conta')?.errors?.['required']">
+            Campo obrigatório
+          </mat-error>
+          <mat-error class="error"
+            *ngIf="agendarForm.get('conta')?.errors?.['min'] ||agendarForm.get('conta')?.errors?.['max'] ">
+            Utilize o padrão de 6 digitos
+          </mat-error>
+
+        </mat-form-field>
+        <mat-error class="error" *ngIf="agendarForm?.errors?.['contaInvalida']">
+          Usuario não Encontrado
+        </mat-error>
+        <button class="botao" mat-raised-button color="primary" (click)="prosseguirParaQuantidade()">Prosseguir</button>
+      </form>
     </div>
+  </div>
+</div>
+
+
+<div class="content" *ngIf="escolherQuantidade">
+  <div class="escolher_conta">
+    <h5 class="card_title">Quanto você deseja transferir?  </h5>
+    <div class="card_body">
+      <form [formGroup]="agendarForm">
+        <mat-form-field class="input_field">
+          <mat-label>Saldo</mat-label>
+          <input formControlName="quantidade" class="input" matInput type="number" minlength="6" maxlength="6"
+            placeholder="Ex. 5000" value="">
+          <mat-error class="error" *ngIf="agendarForm.get('quantidade')?.errors?.['max']">
+            Maximo de até {{saldoAtual | currency:'BRL':'symbol':'1.2-2'}}
+          </mat-error>
+          <mat-error class="error" *ngIf="agendarForm.get('quantidade')?.errors?.['min']">
+            Minimo de {{ 1 | currency:'BRL':'symbol':'1.2-2'}}
+          </mat-error>
+
+
+        </mat-form-field>
+        <mat-error class="error" *ngIf="agendarForm?.errors?.['contaInvalida']">
+          Usuario não Encontrado
+        </mat-error>
+        <button class="botao" mat-raised-button color="primary" (click)="prosseguirParaData()">Escolher data</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="content" *ngIf="escolherData">
+  <div class="escolher_conta">
+    <h5 class="card_title">Escolha a data para ser transferido: </h5>
+    <div class="card_body">
+      <form [formGroup]="agendarForm">
+        <mat-form-field class="input_field">
+          <mat-label>Data para transferencia</mat-label>
+          <input formControlName="data" class="input" matInput type="date">
+          <mat-error class="error" *ngIf="agendarForm.get('data')?.errors?.['invalidDate']">
+            Data invalida
+          </mat-error>
+        </mat-form-field>
+        <button class="botao" mat-raised-button color="primary" (click)="prosseguirParaConfirmacao()">Confirmar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="content" *ngIf="confirmacao">
+  <div class="escolher_conta">
+    <h5 class="card_title">Escolha a data para ser transferido: </h5>
+    <div class="card_body">
+      <form [formGroup]="agendarForm">
+        <mat-form-field class="input_field">
+          <mat-label>Data para transferencia</mat-label>
+          <input formControlName="data" class="input" matInput type="date">
+          <mat-error class="error" *ngIf="agendarForm.get('data')?.errors?.['invalidDate']">
+            Data invalida
+          </mat-error>
+        </mat-form-field>
+        <button class="botao" mat-raised-button color="primary" (click)="prosseguirParaConfirmacao()">Confirmar</button>
+      </form>
+    </div>
+  </div>
+</div>
+

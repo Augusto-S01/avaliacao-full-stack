@@ -1,6 +1,7 @@
 package com.AugustoSouza.SistemaDeTransferencia.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.AugustoSouza.SistemaDeTransferencia.DTO.AuthenticationdDTO;
+import com.AugustoSouza.SistemaDeTransferencia.DTO.EncontrarUsuarioDTO;
 import com.AugustoSouza.SistemaDeTransferencia.DTO.UserDTO;
 import com.AugustoSouza.SistemaDeTransferencia.Entity.User;
 import com.AugustoSouza.SistemaDeTransferencia.Repository.UserRepository;
@@ -38,6 +40,16 @@ public class UserService {
         UserDTO userDTO = new UserDTO(teste);
         
         return userDTO;
+    }
+
+    public ResponseEntity verificaUsuarioByAccountNumber(Integer accountNumber) {
+        User user = userRepository.findByAccountNumber(accountNumber);
+        if (user != null) {
+            EncontrarUsuarioDTO userDTO = new EncontrarUsuarioDTO(user);
+            return ResponseEntity.ok(userDTO);
+        }
+        EncontrarUsuarioDTO userDTO = new EncontrarUsuarioDTO("Usuario não encontrado");
+        return ResponseEntity.ok(userDTO);
     }
 
 }

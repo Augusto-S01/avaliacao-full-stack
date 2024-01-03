@@ -5,10 +5,11 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  min-height: 30em;
   margin-top: 3em;
 }
 
-.card_content{
+.escolher_conta{
   width: 80%;
   height: 100%;
   background-color: aliceblue;
@@ -17,6 +18,10 @@
   flex-direction: column;
   text-align: center;
   border-radius: 25px;
+}
+
+.card_body{
+  min-height: 10em ;
 }
 
 .card_title{
@@ -34,6 +39,7 @@
 
 .input_field{
   margin-top: 3em;
+  margin-bottom: 3em;
 }
 .botao{
   width: 100%;
@@ -49,4 +55,9 @@
   background-color: #00b079;
   padding-top: 1em;
   padding-bottom: 1em;
+}
+
+.error{
+  margin-top: 0.5em;
+  margin-bottom: 3em;
 }

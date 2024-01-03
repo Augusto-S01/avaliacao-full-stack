@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { take, map } from 'rxjs';
 import { TransferenciaAPI } from '../utils/const';
 import { CookiesService } from './cookies.service';
+import { EncontrarUsuarioDTO } from '../interface/encontrar-usuario-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class UsuarioService {
     private httpClient: HttpClient,
     private cookiesService: CookiesService,
   ) { }
+
 
 
   getUsuarioLogado() {
@@ -26,4 +28,11 @@ export class UsuarioService {
       )
     )
   }
+
+  verificaUsuario(conta : number | String){
+    const token = this.cookiesService.getCookie('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.httpClient.get(`${TransferenciaAPI.verificaUsuario}/${conta}`, {headers})
+  }
+
 }
