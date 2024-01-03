@@ -61,3 +61,12 @@
   margin-top: 0.5em;
   margin-bottom: 3em;
 }
+
+.confirmacao{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  margin: 2em
+}
