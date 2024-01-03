@@ -19,9 +19,10 @@ import lombok.NoArgsConstructor;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
+// @NoArgsConstructor
 public class AgendamentoService {
 
+   
     private TaskScheduler scheduler;
 
     @Autowired

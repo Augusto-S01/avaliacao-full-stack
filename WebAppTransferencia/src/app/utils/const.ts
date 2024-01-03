@@ -11,4 +11,5 @@ export const TransferenciaAPI = {
   getUsuarioLogado : 'http://localhost:8080/usuario/getUsuarioLogado',
   verificaUsuario : 'http://localhost:8080/usuario/verificaUsuario',
   agendarTransferencia : 'http://localhost:8080/transferencia/agendarTransferencia',
+  buscarHistorico: 'http://localhost:8080/transferencia/historicoTransferencias'
 }

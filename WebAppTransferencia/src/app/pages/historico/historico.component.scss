@@ -1,0 +1,21 @@
+.content{
+  margin: 5em;
+  padding: 3em;
+  font-family: Montserrat, sans-serif;
+  &  th {
+    font-weight: bold;
+    color: #00b079;
+    text-align: center;
+    justify-content: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}
+
+tr > td{
+  text-align: center;
+  justify-content: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  vertical-align: middle;
+}

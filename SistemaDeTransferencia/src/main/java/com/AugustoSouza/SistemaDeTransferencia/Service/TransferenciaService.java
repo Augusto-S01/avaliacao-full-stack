@@ -59,7 +59,7 @@ public class TransferenciaService {
         agendamentoService.agendarTrasferencia(save);
 
         // TODO melhorar a resposta desse retorno
-        return ResponseEntity.ok().body("Transferencia agendada com sucesso");
+        return ResponseEntity.status(200).build();
     }
 
     public ResponseEntity historicoTransferencias(Principal principal) {

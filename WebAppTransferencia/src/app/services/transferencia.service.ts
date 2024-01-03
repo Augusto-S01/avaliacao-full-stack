@@ -28,4 +28,11 @@ export class TransferenciaService {
     return this.httpClient.post(TransferenciaAPI.agendarTransferencia, body, {headers});
   }
 
+  buscarHistorico(){
+    const headers = {
+      'Authorization': `Bearer ${this.cookiesService.getCookie('token')}`
+    }
+    return this.httpClient.get(TransferenciaAPI.buscarHistorico, {headers});
+  }
+
 }

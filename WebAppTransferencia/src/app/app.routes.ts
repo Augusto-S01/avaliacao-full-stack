@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { tokenGuardGuard } from './guard/token-guard.guard';
 import { RegisterComponent } from './pages/register/register.component';
 import { AgendarTransferenciaComponent } from './pages/agendar-transferencia/agendar-transferencia.component';
+import { HistoricoComponent } from './pages/historico/historico.component';
 
 
 export const routes: Routes = [
@@ -15,7 +16,8 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'logout', component: LogoutComponent },
   { path: 'home', component: HomeComponent , canActivate: [tokenGuardGuard] },
-  { path: "agendar-transferencia" , component: AgendarTransferenciaComponent, canActivate: [tokenGuardGuard]}
+  { path: "agendar-transferencia" , component: AgendarTransferenciaComponent, canActivate: [tokenGuardGuard]},
+  { path: 'historico', component: HistoricoComponent, canActivate: [tokenGuardGuard]}
 
 
 ];

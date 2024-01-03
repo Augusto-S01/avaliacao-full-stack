@@ -131,11 +131,11 @@ export class AgendarTransferenciaComponent {
 
   agendarTransferencia(){
     this.transferenciaService.agendarTransferencia
-
     (
       this.dadosDestinatario?.accountNumber,
       this.quantidadeTransferir,
       this.dataEscolhida).subscribe((response: any) => {
+        console.log(response);
         this.routerService.navigate(['/home']);
       });
   }
