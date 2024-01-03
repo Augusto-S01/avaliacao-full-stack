@@ -1,62 +1,50 @@
-# Entregáveis
- Pequena documentação no README explicando suas decisões arquiteturais, versões de linguagem,
-ferramentas utilizadas e instruções para a subida do projeto.
+# Sistema de Transferências Financeiras
 
- É obrigatório a criação de um projeto no seu Github para que vejamos os passos feitos
-através dos commits.
+![](ttps://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
+![](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
+![](https://img.shields.io/badge/Spring_Security-6DB33F?style=for-the-badge&logo=Spring-Security&logoColor=white)
+![](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
 
-# Avaliação
+## Descrição 
 
-Desenvolver tanto a API quanto o front-end (Spring boot e Vue no front, caso não tenha conhecimentos de vue, aceitamos o front com angular)
+Esse projeto foi desenvolvido para atender a avaliação técnica , que consiste em desenvolver um sistema de agendamento de transferências financeiras. as especificações podem ser encontradas no arquivo [AVALIACAO.md](AVALIACAO.md)
 
-O objetivo dessa tarefa é avaliar como você vai desenvolver o código em termos de estilo,
-eficiência, qualidade e prazo de entrega.
 
-A tarefa é a seguinte:
+## Tecnologias utilizadas
 
-Desenvolver um sistema de agendamento de transferências financeiras.
+- Java 17
+- Node 20
+- Spring Boot 3.2.1
+- Angular: 17
 
-1) O usuário deve poder agendar uma transferência financeira com as seguintes
- informações:
- Conta de origem (padrão XXXXXX)
- Conta de destino (padrão XXXXXX)
- Valor da transferência
- Taxa (a ser calculada)
- Data da transferência (data que será realizada a transferência)
- Data de agendamento (hoje)
- 
-2) Cada tipo de transação segue uma regra diferente para cálculo da taxa
+## Como executar o projeto
 
- A: Tranferências no mesmo dia do agendamento tem uma taxa de $3 mais 3% do valor a
-ser transferido;
+o projeto inteiro foi Dockerizado para facilitar a execução, para isso é necessário ter o docker e o docker-compose instalados na máquina.
+para executar o projeto basta executar o comando abaixo na raiz do projeto:
 
-B: Tranferências até 10 dias da data de agendamento possuem uma taxa de $12.
+```bash
+docker-compose up -d
+```
 
-C: Operações do tipo C tem uma taxa regressiva conforme a data de
-transferência:
+### Decisões de projeto
 
- acima de 10 dias da data de agendamento 8.2%
- 
- acima de 20 dias da data de agendamento 6.9%
- 
- acima de 30 dias da data de agendamento 4.7%
- 
- acima de 40 dias da data de agendamento 1.7%
- 
- D: Operações do tipo D tem a taxa igual a A, B ou C dependendo do valor da
-transferência.
+- O projeto foi dividido em dois módulos, um para o backend e outro para o frontend, isso foi feito para facilitar a manutenção e o deploy do projeto.
+- Por conta do escopo do projeto ser pequeno , não foi utilzado um gerenciador de estado no front como o ngrx ou redux
+- por conta da baixa complexidade do projeto não foi utilizado um banco de dados relacional, foi utilizado o banco de dados em memória H2
+- O projeto foi dockerizado para facilitar a execução e o deploy do projeto
 
- Valores até $1.000 seguem a taxação tipo A
- 
- Valores de $1.001 até $2.000 seguem a taxação tipo B
- 
- Valores maiores que $2.000 seguem a taxação tipo C
- 
-Obs: Caso não haja taxa aplicável, lançar um alerta sobre o erro.
+### Melhorias futuras
 
-3) O usuário deve poder ver todos os agendamentos cadastrados.
+- Implementar testes unitários e de integração
+- Implementar um gerenciador de estado no front
+- Implementar um banco de dados relacional
+- Implementar um sistema que mensageria para tratar as transferências 
+- Melhorar o retorno das mensagens de erro
 
-Nota: A persistência deve ser feita em banco de dados em memória (h2, por exemplo).
-Boa sorte!
 
 
