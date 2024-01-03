@@ -46,9 +46,8 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row class="campo"  *matRowDef="let row; columns: displayedColumns;"></tr>
-
-
      </table>
 
-  </div>
+    </div>
+    <button class="botao" mat-raised-button color="primary" (click)="home()">Home</button>
 </main>

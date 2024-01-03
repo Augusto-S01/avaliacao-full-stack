@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit{
     if(usuario && senha){
       this.autenticacaoService.login(usuario, senha).pipe(
         catchError(error => {
-          console.log('Erro ao fazer login: ', error);
+          //todo tratar erro
           return of(null);
         })
        )
@@ -78,7 +78,6 @@ export class LoginComponent implements OnInit{
   }
 
   register(){
-    console.log("teste")
     this.router.navigate(['/register']);
   }
 

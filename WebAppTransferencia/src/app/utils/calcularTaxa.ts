@@ -50,7 +50,6 @@ export function calcularTaxa(quantidade: number, dataAgendada: Date): number {
   if (taxaC && taxaCVal != 0){
     taxa=+ (quantidade * taxaCVal);
   }
-  console.log(taxa)
   return taxa;
 
 }

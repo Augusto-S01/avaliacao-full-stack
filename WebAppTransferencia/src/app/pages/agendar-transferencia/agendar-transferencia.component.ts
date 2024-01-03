@@ -135,7 +135,6 @@ export class AgendarTransferenciaComponent {
       this.dadosDestinatario?.accountNumber,
       this.quantidadeTransferir,
       this.dataEscolhida).subscribe((response: any) => {
-        console.log(response);
         this.routerService.navigate(['/home']);
       });
   }
@@ -147,9 +146,6 @@ export class AgendarTransferenciaComponent {
     if (control.value) {
       const data = moment(control.value);
       const hoje = moment();
-      console.log(data.isAfter(hoje));
-      console.log(data.isSame(hoje, 'day'));
-
       if (!data.isSameOrAfter(hoje, 'day')) {
         return { invalidDate: true };
       }

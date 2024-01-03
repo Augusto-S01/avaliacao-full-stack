@@ -16,7 +16,6 @@ export class SaldoService {
 
 
   getSaldo(){
-    console.log("teste");
     const token = this.cookiesService.getCookie('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.httpClient.get(TransferenciaAPI.getSaldo, {headers}).pipe(

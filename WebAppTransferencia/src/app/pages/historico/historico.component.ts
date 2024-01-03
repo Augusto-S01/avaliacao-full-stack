@@ -28,9 +28,12 @@ export class HistoricoComponent implements OnInit{
     this.transferenciaService.buscarHistorico().subscribe((response: HistoricoTransferenciaDTO[] | any) => {
       if(response){
         this.historico = response;
-        console.log(this.historico)
       }
     });
+  }
+
+  home() {
+    this.routerService.navigate(['home']);
   }
 
 }
