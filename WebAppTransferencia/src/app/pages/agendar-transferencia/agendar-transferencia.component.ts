@@ -18,6 +18,7 @@ import { EncontrarUsuarioDTO } from '../../interface/encontrar-usuario-dto';
 import moment from 'moment';
 import { calcularTaxa } from '../../utils/calcularTaxa';
 import { Router } from '@angular/router';
+import { TransferenciaService } from '../../services/transferencia.service';
 
 @Component({
   selector: 'app-agendar-transferencia',
@@ -40,7 +41,8 @@ export class AgendarTransferenciaComponent {
     private formBuilder: FormBuilder,
     private usuarioService: UsuarioService,
     private saldoService: SaldoService,
-    private routerService : Router
+    private routerService : Router,
+    private transferenciaService : TransferenciaService
   ) {}
 
   agendarForm!: FormGroup;
@@ -62,7 +64,6 @@ export class AgendarTransferenciaComponent {
   saldoInsuficiente = false;
 
   ngOnInit() {
-    console.log("teste")
     this.agendarForm = this.formBuilder.group({
       conta: [
         '',
@@ -106,12 +107,10 @@ export class AgendarTransferenciaComponent {
 
   prosseguirParaData() {
     const errosQuantidade = this.agendarForm.get('quantidade')?.errors;
-    console.log(`errosQuantidade: ${errosQuantidade}`);
     if (!errosQuantidade) {
       this.quantidadeTransferir = this.agendarForm.get('quantidade')?.value;
       this.escolherQuantidade = false;
       this.escolherData = true;
-      console.log('tudo certo!');
       this.agendarForm
         .get('data')
         ?.setValidators([Validators.required, this.dateFutureValidator]);
@@ -131,10 +130,14 @@ export class AgendarTransferenciaComponent {
   }
 
   agendarTransferencia(){
+    this.transferenciaService.agendarTransferencia
 
-    console.log("teste");
-    console.log(this.saldoAtual)
-
+    (
+      this.dadosDestinatario?.accountNumber,
+      this.quantidadeTransferir,
+      this.dataEscolhida).subscribe((response: any) => {
+        this.routerService.navigate(['/home']);
+      });
   }
   voltar(){
     this.routerService.navigate(['/home']);

@@ -15,6 +15,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
    @Query(value = "SELECT balance FROM \"user\" WHERE username = ?1", nativeQuery = true)
    BigDecimal findBalanceByUsername(String username);
 
+   @Query(value = "SELECT balance FROM \"user\" WHERE account_number = ?1", nativeQuery = true)
+   BigDecimal findBalanceByAccountNumber(Integer accountNumber);
+
    @Query(value = "SELECT * FROM \"user\" WHERE account_number = ?1", nativeQuery = true)
    User findByAccountNumber(Integer newAccountNumber);
 

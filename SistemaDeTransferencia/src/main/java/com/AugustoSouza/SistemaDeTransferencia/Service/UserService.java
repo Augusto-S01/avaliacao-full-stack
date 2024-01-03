@@ -62,13 +62,12 @@ public class UserService {
         Integer generatedAccountNumber = generatedAccountNumber();
         String password = new BCryptPasswordEncoder().encode(authenticationDTO.getPassword());
         User user = new User(authenticationDTO.getUsername(), password,generatedAccountNumber);
-
-
         User save = userRepository.save(user);
-        return ResponseEntity.ok(save);
+        UserDTO userDTO = new UserDTO(save);
+        return ResponseEntity.ok(userDTO);
     }
 
-    
+
     private boolean isUniqueAccountNumber(Integer accountNumber) {
         User usuario = userRepository.findByAccountNumber(accountNumber);
         if(usuario == null){

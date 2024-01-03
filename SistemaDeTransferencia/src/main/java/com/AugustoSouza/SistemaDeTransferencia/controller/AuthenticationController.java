@@ -49,7 +49,6 @@ public class AuthenticationController {
     public ResponseEntity login( @Valid  @RequestBody  AuthenticationdDTO authDTO) {
         User user = userService.usernameByAutehntication(authDTO);
         String token = tokenService.generateToken(user);
-
         LoginResponseDTO loginDTO = new LoginResponseDTO(user.getUsername(), token);
         return ResponseEntity.ok(loginDTO);
     }

@@ -63,6 +63,12 @@ public class User implements UserDetails {
 
     private UserRole role;
 
+    @OneToMany(mappedBy = "destinatario")
+    private List<Transferencia> transferenciasAsDestinatario;
+ 
+    @OneToMany(mappedBy = "remetente")
+    private List<Transferencia> transferenciasAsRemetente;
+
 
 
     @Override
