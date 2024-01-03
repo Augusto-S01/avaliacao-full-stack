@@ -20,13 +20,13 @@ public class GlobalExceptionControllerHandler {
     
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<ErrorDTO> UserAlreadyExistsException(UserAlreadyExistsException e){
-        ErrorDTO error = new ErrorDTO(e.getMessage());
+        ErrorDTO error = new ErrorDTO(e.getMessage(),HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ErrorDTO> BadCredentialsException(BadCredentialsException e){
-        ErrorDTO error = new ErrorDTO(e.getMessage());
+        ErrorDTO error = new ErrorDTO(e.getMessage(),HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 

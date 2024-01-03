@@ -5,19 +5,25 @@ import { Component, OnInit } from '@angular/core';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { MoedaRealPipe } from '../../pipes/moeda-real.pipe';
+import { CurrencyPipe } from '@angular/common';
+import { UsuaroLogadoDTO } from '../../interface/usuaro-logado-dto';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatIconModule,MoedaRealPipe],
+  imports: [
+    MatIconModule,
+    CurrencyPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
   hide = false;
   usuario = 'Usuário';
-  saldo = '0,00';
-  numeroDaconta = '000000';
+  saldo = 0;
+  numeroDaconta = 0;
+
+
 
   constructor(
     private Router: Router,
@@ -25,13 +31,10 @@ export class HomeComponent implements OnInit {
     private usuarioService : UsuarioService,
     ) { }
   ngOnInit(): void {
-    const cookieUsuario = this.autenticacaoService.getUsuarioLogado();
-    if(cookieUsuario){
-      this.usuario = cookieUsuario;
-    }
-   this.usuarioService.getUsuarioLogado().subscribe((response: any) => {
+   this.usuarioService.getUsuarioLogado().subscribe((response: UsuaroLogadoDTO) => {
       this.numeroDaconta = response.accountNumber;
       this.saldo = response.balance;
+      this.usuario = response.username;
     });
 
 

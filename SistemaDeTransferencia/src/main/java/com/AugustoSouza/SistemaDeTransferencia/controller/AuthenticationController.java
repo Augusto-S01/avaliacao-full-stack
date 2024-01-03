@@ -47,7 +47,6 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity login( @Valid  @RequestBody  AuthenticationdDTO authDTO) {
-
         User user = userService.usernameByAutehntication(authDTO);
         String token = tokenService.generateToken(user);
 
@@ -57,32 +56,9 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity register( @Valid @RequestBody AuthenticationdDTO authenticationDTO) {
-        if(userRepository.findByUsername(authenticationDTO.getUsername()) != null){
-           throw new UserAlreadyExistsException("User already exists");
-        }
-        
-        /////////////////////////////////
-        Integer generatedAccountNumber;
-        Random random = new Random();
-            do {
-            generatedAccountNumber = random.nextInt((999999 - 100000) + 1) + 100000;
-        } while (!isUniqueAccountNumber(generatedAccountNumber));
-        //////////////////////
-        String password = new BCryptPasswordEncoder().encode(authenticationDTO.getPassword());
-        User user = new User(authenticationDTO.getUsername(), password,generatedAccountNumber);
-
-
-        User save = userRepository.save(user);
-        return ResponseEntity.ok(save);
+        return userService.register(authenticationDTO);
     }
-    
-     private boolean isUniqueAccountNumber(Integer accountNumber) {
-        User usuario = userRepository.findByAccountNumber(accountNumber);
-        if(usuario == null){
-            return true;
-        }
-        return false;
-    }
+
 }
 
 

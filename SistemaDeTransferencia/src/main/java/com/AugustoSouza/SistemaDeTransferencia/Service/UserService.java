@@ -1,5 +1,7 @@
 package com.AugustoSouza.SistemaDeTransferencia.Service;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +16,7 @@ import com.AugustoSouza.SistemaDeTransferencia.DTO.AuthenticationdDTO;
 import com.AugustoSouza.SistemaDeTransferencia.DTO.EncontrarUsuarioDTO;
 import com.AugustoSouza.SistemaDeTransferencia.DTO.UserDTO;
 import com.AugustoSouza.SistemaDeTransferencia.Entity.User;
+import com.AugustoSouza.SistemaDeTransferencia.Exceptions.UserAlreadyExistsException;
 import com.AugustoSouza.SistemaDeTransferencia.Repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -50,6 +53,37 @@ public class UserService {
         }
         EncontrarUsuarioDTO userDTO = new EncontrarUsuarioDTO("Usuario não encontrado");
         return ResponseEntity.ok(userDTO);
+    }
+
+    public ResponseEntity register(AuthenticationdDTO authenticationDTO) {
+        if(userRepository.findByUsername(authenticationDTO.getUsername()) != null){
+           throw new UserAlreadyExistsException("User already exists");
+        }
+        Integer generatedAccountNumber = generatedAccountNumber();
+        String password = new BCryptPasswordEncoder().encode(authenticationDTO.getPassword());
+        User user = new User(authenticationDTO.getUsername(), password,generatedAccountNumber);
+
+
+        User save = userRepository.save(user);
+        return ResponseEntity.ok(save);
+    }
+
+    
+    private boolean isUniqueAccountNumber(Integer accountNumber) {
+        User usuario = userRepository.findByAccountNumber(accountNumber);
+        if(usuario == null){
+            return true;
+        }
+        return false;
+    }
+
+    private Integer generatedAccountNumber(){
+        Random random = new Random();
+        Integer generatedAccountNumber;
+        do {
+            generatedAccountNumber = random.nextInt((999999 - 100000) + 1) + 100000;
+        } while (!isUniqueAccountNumber(generatedAccountNumber));
+        return generatedAccountNumber;
     }
 
 }

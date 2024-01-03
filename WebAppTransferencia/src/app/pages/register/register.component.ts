@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { AutenticacaoService } from '../../services/autenticacao.service';
 import { CommonModule } from '@angular/common';
 import { catchError, of, pipe, take } from 'rxjs';
+import { ErrorDTO } from '../../interface/error-dto';
 
 @Component({
   selector: 'app-register',
@@ -67,8 +68,8 @@ export class RegisterComponent  implements OnInit{
         const senha = this.registerForm.get('senha')?.value;
         this.autenticacaoService.register(usuario,senha).pipe(
           take(1),
-          catchError(error => {
-            console.log(error.error.error)
+          catchError( error => {
+            this.atualizaMessagemDeErro(error.error);
             return of(null);
           })
         )
@@ -86,6 +87,11 @@ export class RegisterComponent  implements OnInit{
 
   }
 
+  atualizaMessagemDeErro(error : ErrorDTO){
+    if(error.message = "User already exists"){
+      this.error = "Usuário já existe";
+    }
+  }
   irParaLogin(){
     this.routerService.navigate(['/login']);
   }
