@@ -1,5 +1,7 @@
 package com.AugustoSouza.SistemaDeTransferencia.controller;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -58,14 +60,30 @@ public class AuthenticationController {
         if(userRepository.findByUsername(authenticationDTO.getUsername()) != null){
            throw new UserAlreadyExistsException("User already exists");
         }
-
+        
+        /////////////////////////////////
+        Integer generatedAccountNumber;
+        Random random = new Random();
+            do {
+            generatedAccountNumber = random.nextInt((999999 - 100000) + 1) + 100000;
+        } while (!isUniqueAccountNumber(generatedAccountNumber));
+        //////////////////////
         String password = new BCryptPasswordEncoder().encode(authenticationDTO.getPassword());
-        User user = new User(authenticationDTO.getUsername(), password);
+        User user = new User(authenticationDTO.getUsername(), password,generatedAccountNumber);
 
 
-        userRepository.save(user);
-        return ResponseEntity.ok().build();
+        User save = userRepository.save(user);
+        return ResponseEntity.ok(save);
     }
     
-    
+     private boolean isUniqueAccountNumber(Integer accountNumber) {
+        User usuario = userRepository.findByAccountNumber(accountNumber);
+        if(usuario == null){
+            return true;
+        }
+        return false;
+    }
 }
+
+
+   

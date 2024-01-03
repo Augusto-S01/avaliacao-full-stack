@@ -8,27 +8,24 @@ import org.springframework.stereotype.Service;
 
 import com.AugustoSouza.SistemaDeTransferencia.Repository.UserRepository;
 
-
 @Service
-public class AuthenticationService implements UserDetailsService{
+public class AuthenticationService implements UserDetailsService {
 
     @Autowired
     UserRepository userRepository;
 
     @Override
-    
+
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        try{
-            UserDetails byUsername = userRepository.findByUsername(username);
-            if(byUsername == null)
-            throw new UsernameNotFoundException("User not found");
-
-
-            return byUsername;
-        }catch(Exception e ){
+        try {
+            UserDetails user = userRepository.findByUsername(username);
+            if (user == null)
+                throw new UsernameNotFoundException("User not found");
+            return user;
+        } catch (Exception e) {
             throw new UsernameNotFoundException("User not found");
         }
-            
+
     }
-    
+
 }

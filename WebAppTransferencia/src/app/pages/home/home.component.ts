@@ -1,3 +1,4 @@
+import { UsuarioService } from './../../services/usuario.service';
 import { SaldoService } from './../../services/saldo.service';
 import { AutenticacaoService } from './../../services/autenticacao.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,20 +17,21 @@ export class HomeComponent implements OnInit {
   hide = false;
   usuario = 'Usuário';
   saldo = '0,00';
+  numeroDaconta = '000000';
 
   constructor(
     private Router: Router,
     private autenticacaoService : AutenticacaoService,
-    private saldoService : SaldoService
+    private usuarioService : UsuarioService,
     ) { }
   ngOnInit(): void {
     const cookieUsuario = this.autenticacaoService.getUsuarioLogado();
     if(cookieUsuario){
       this.usuario = cookieUsuario;
     }
-   this.saldoService.getSaldo().subscribe((saldo: any) => {
-
-      this.saldo = saldo;
+   this.usuarioService.getUsuarioLogado().subscribe((response: any) => {
+      this.numeroDaconta = response.accountNumber;
+      this.saldo = response.balance;
     });
 
 

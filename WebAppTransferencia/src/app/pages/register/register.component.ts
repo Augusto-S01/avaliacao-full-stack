@@ -87,5 +87,6 @@ export class RegisterComponent  implements OnInit{
   }
 
   irParaLogin(){
+    this.routerService.navigate(['/login']);
   }
 }
